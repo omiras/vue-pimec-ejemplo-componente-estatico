@@ -1,4 +1,8 @@
 <script setup>
+
+import { ref } from 'vue';
+import logo from '@/assets/logo.svg'
+
 /** Es un array de strings con los atributos arbitrarios que hemos definido en <Animal /> 
  * Vamos a tener a nuestra disposición una variable para usar en el JS o el template
  */
@@ -7,6 +11,9 @@ const props = defineProps(['name', 'image', 'alt', 'birthDate', 'vaccines', 'wei
 // peso ideal
 const idealWeight = 5;
 
+//mostrar o no mostrar el animal
+const showAnimal = ref(true)
+
 const clicCat = () => {
     console.log(`My name is ${props.name}`)
 }
@@ -14,7 +21,9 @@ const clicCat = () => {
 </script>
 
 <template>
-    <article @click="clicCat">
+    <article v-show="showAnimal" @click="clicCat">
+        <img style="width: 25px;" :src="logo" alt="">
+
         <h2>{{ name }}</h2>
         <h3>Peso {{ weight }} kg </h3>
         <h3>Fecha nacimiento {{ birthDate }}</h3>
@@ -31,9 +40,10 @@ const clicCat = () => {
             </p>
         </section>
     </article>
+    <button @click="showAnimal = false">Ocultar</button>
 </template>
 
-<style>
+<style scoped>
 img {
     width: 200px;
 }

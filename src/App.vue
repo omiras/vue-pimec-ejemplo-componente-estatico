@@ -1,8 +1,17 @@
 <!-- tag script setup donde iria todo nuestro JAvaScript -->
 <script setup>
 // import es una palabra reservada que sirve para "importar" un recurso y asignarlo a una variable. En este caso ,importamos el fichero Animal.vue y lo ponemos en la variable Animal 
-import Animal from "./components/Animal.vue"
-import Counter from "./components/Counter.vue"
+import Animal from "@/components/Animal.vue" // @ --> carpeta src
+import Counter from "@/components/Counter.vue"
+import Tile from "@/components/Tile.vue"
+
+// podemos importar cualquier recurso de la carpeta assets y usarlo en nuestro código
+import pokemonsJson from '@/assets/pokemons.json'
+import logo from '@/assets/logo.svg'
+
+console.log("🚀 ~ file: App.vue:9 ~ pokemons:", pokemonsJson)
+
+
 
 const vaccinesArray = [{
   name: "Rabia",
@@ -12,12 +21,22 @@ const vaccinesArray = [{
   date: "2021-02-15"
 }];
 
+
+
 </script>
 
 <!-- tag template donde va todo nuestro HTML -->
 <template>
+  <h3>Casillas de palabradiadia</h3>
+  <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+    <Tile letter="A" color="gray" />
+    <Tile letter="b" color="green" />
+    <Tile letter="i" color="orange" />
+  </div>
+
   <header class="header">
     <p>Hola soy un menú de navegación, creeme </p>
+    <img style="width: 100px;" :src="logo" alt="">
   </header>
   <main>
     <h1>Protectora de animales</h1>
